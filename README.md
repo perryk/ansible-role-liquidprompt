@@ -1,8 +1,7 @@
 Ansible Role Liquidprompt
 =========
 
-This role downloads and configures liquidprompt for current ansible user or a specified user. 
-
+This role downloads and configures liquidprompt.
 https://github.com/nojhan/liquidprompt.git
 
 Requirements
