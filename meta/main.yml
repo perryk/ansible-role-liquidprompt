@@ -1,0 +1,34 @@
+galaxy_info:
+  author: "Perry Kollmorgen (https://github.com/perryk)"
+  role_name: liquidprompt
+  description: "Downloads and configures liquidprompt. https://github.com/nojhan/liquidprompt"
+
+  license: MIT
+
+  min_ansible_version: 2.4
+
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Debian
+    versions:
+    - jessie
+    - stretch
+    - sid
+  - name: Ubuntu
+    versions:
+    - zesty
+    - artful
+    - bionic
+    - cosmic
+    - disco
+
+  galaxy_tags:
+  - liquidprompt
+  - prompt
+  - bash
+
+dependencies: []
+

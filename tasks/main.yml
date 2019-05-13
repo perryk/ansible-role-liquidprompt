@@ -1,0 +1,45 @@
+# vim: set ft=ansible et ts=2 sw=2:
+# tasks file for ansible-role-liquidprompt
+#
+# Downloads and configures liquidprompt 
+# https://github.com/nojhan/liquidprompt.git
+#
+---
+- name: Clone liquidprompt repo to ~/lp
+  git: 
+    repo: '{{ liquidprompt_repo_url }}'
+    version: '{{ liquidprompt_repo_version }}'
+    dest: '~/lp'
+
+- name: Copy liquidprompt defaults file
+  copy: 
+    remote_src: true
+    src: "~/lp/liquidpromptrc-dist" 
+    dest: "~/.liquidpromptrc"
+    force: no
+
+- name: Configure liquidprompt defaults file
+  lineinfile:
+    path: "~/.liquidpromptrc"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^LP_HOSTNAME_ALWAYS', line: 'LP_HOSTNAME_ALWAYS=1' }
+    - { regexp: '^LP_ENABLE_TIME', line: 'LP_ENABLE_TIME=1' }
+    #- { regexp: '^', line: '' } 
+
+- name: Add a line to .bashrc to source liquidprompt to start it
+  lineinfile:
+    path: "~/.bashrc"
+    line: "[[ $- = *i* ]] && source ~/lp/liquidprompt"
+    create: true
+
+- name: Insert/update check to make .bash_profile call .bash_rc if running bash interactively
+  blockinfile:
+    path: "~/.bash_profile"
+    create: true
+    block: |
+      if [ -f ~/.bashrc ]; then
+              . ~/.bashrc
+      fi
+
