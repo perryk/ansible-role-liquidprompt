@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-role-liquidprompt
 
-liquidpromot_user_to_liquidify: '{{ ansible_user_id }}'
+liquidprompt_user_to_liquidify: '{{ ansible_user_id }}'
 liquidprompt_repo_url: 'https://github.com/nojhan/liquidprompt.git'
 liquidprompt_repo_version: 'master'
