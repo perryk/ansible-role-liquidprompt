@@ -9,7 +9,7 @@
 - block:
     - name: Show connection and user to liquidify vars
       debug:
-        msg: 'Connected as {{ ansible_user_id }}, going to liquidify {{ user_to_liquidify }}.'
+        msg: 'Connected as {{ ansible_user_id }}, going to liquidify {{ liquidprompt_user_to_liquidify }}.'
 
     - name: Clone liquidprompt repo to ~/lp
       git: 
@@ -49,5 +49,5 @@
 #                  . ~/.bashrc
 #          fi
   become: true
-  become_user: '{{ user_to_liquidify }}'
+  become_user: '{{ liquidprompt_user_to_liquidify }}'
 
