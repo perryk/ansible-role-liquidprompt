@@ -40,6 +40,8 @@ Here is an example including how this can used to install this for a different u
         - perryk.liquidprompt
 ```
 
+n.b the above works if this repo is downloaded using Ansible Galaxy, if cloning from this repo directly the role is called: ansible-role-liquidprompt
+
 License
 -------
 
