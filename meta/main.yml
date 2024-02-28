@@ -13,18 +13,26 @@ galaxy_info:
     - 6
     - 7
     - 8
+    - 9
   - name: Debian
     versions:
     - jessie
     - stretch
-    - sid
+    - buster
+    - bullseye
+    - bookworm
   - name: Ubuntu
     versions:
-    - zesty
-    - artful
     - bionic
     - cosmic
     - disco
+    - eoan
+    - focal
+    - groovy
+    - hirsute
+    - impish
+    - jammy
+    - mantic
 
   galaxy_tags:
   - liquidprompt
