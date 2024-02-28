@@ -16,24 +16,29 @@
         repo: '{{ liquidprompt_repo_url }}'
         version: '{{ liquidprompt_repo_version }}'
         dest: '~/lp'
-    
-    - name: Copy liquidprompt defaults file
-      copy: 
-        remote_src: true
-        src: "~/lp/liquidpromptrc-dist" 
+
+    - name: Check to see if liquidprompt configuration file exists
+      stat:
+        path: "~/.liquidpromptrc"
+      register: liquidpromptrc_file
+
+    - name: Create liquidprompt configuration file if it doesn't exist
+      copy:
+        content: ""
         dest: "~/.liquidpromptrc"
         force: no
-    
-    - name: Configure liquidprompt defaults file
+      when: not liquidpromptrc_file.stat.exists
+
+    - name: Ensure liquidprompt lines are present in the configuration file
       lineinfile:
         path: "~/.liquidpromptrc"
-        regexp: "{{ item.regexp }}"
-        line: "{{ item.line }}"
+        line: "{{ item }}"
+        state: present
+        backup: yes
       with_items:
-        - { regexp: '^LP_HOSTNAME_ALWAYS', line: 'LP_HOSTNAME_ALWAYS=1' }
-        - { regexp: '^LP_ENABLE_TIME', line: 'LP_ENABLE_TIME=1' }
-        #- { regexp: '^', line: '' } 
-    
+        - "LP_HOSTNAME_ALWAYS=1"
+        - "LP_ENABLE_TIME=1"
+
     - name: Add a line to .bashrc to source liquidprompt to start it
       lineinfile:
         path: "~/.bashrc"
